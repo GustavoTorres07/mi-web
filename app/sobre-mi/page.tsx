@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import Image from "next/image";
+
 
 export default function SobreMiPage() {
   const [activeSkill, setActiveSkill] = useState<number | null>(null);
@@ -71,9 +73,15 @@ export default function SobreMiPage() {
         <div className="relative group animate-fadeIn" style={{ animationDelay: '0.2s' }}>
           <div className="absolute inset-0 bg-gradient-to-br from-blue-200 via-sky-100 to-transparent blur-2xl opacity-60 group-hover:opacity-80 transition-opacity" />
           <div className="relative rounded-2xl border border-slate-200/60 bg-white/90 backdrop-blur-sm p-6 shadow-xl hover:shadow-2xl transition-shadow">
-            <div className="flex items-center justify-center w-full h-48 rounded-xl bg-gradient-to-br from-blue-100 to-sky-100 mb-4 text-6xl">
-              👨‍💻
-            </div>
+<div className="relative w-full h-48 rounded-xl overflow-hidden mb-4 border border-slate-200 bg-gradient-to-br from-blue-100 to-sky-100">
+  <Image
+    src="/mi_foto_perfil.jpg"
+    alt="Gustavo Emanuel Torres - GT DevStudio"
+    fill
+    className="object-cover object-center"
+    priority
+  />
+</div>
             <div className="text-center space-y-2">
               <h3 className="font-semibold text-gray-900">Gustavo Emanuel Torres</h3>
               <p className="text-sm text-gray-600">Santa Rosa, La Pampa 🇦🇷</p>
