@@ -1,15 +1,28 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-// Asegúrate de que la ruta coincida con tu estructura de carpetas
 import ParticleGridBackground from './ui/components/ParticleGridBackground';
+
+// Definimos la forma de los datos para que TypeScript no se queje
+interface FloatingParticle {
+  top: string;
+  left: string;
+  delay: string;
+  duration: string;
+}
 
 export default function Home() {
   const [typedText, setTypedText] = useState('');
   const [currentWord, setCurrentWord] = useState(0);
+  
+  // 1. ESTADO PARA LAS PARTÍCULAS (Inicialmente vacío)
+  // Esto evita el error porque al principio no renderiza nada que pueda diferir entre servidor y cliente
+  const [particles, setParticles] = useState<FloatingParticle[]>([]);
+
   const words = ['empresas', 'clínicas', 'profesionales', 'emprendedores', 'startups', 'instituciones'];
   const fullText = words[currentWord];
 
+  // Efecto de tipeado
   useEffect(() => {
     let timeout;
     if (typedText.length < fullText.length) {
@@ -25,28 +38,41 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [typedText, fullText, currentWord]);
 
+  // 2. EFECTO PARA GENERAR NÚMEROS ALEATORIOS (Solo en el cliente)
+  useEffect(() => {
+    // Aquí es seguro usar Math.random() porque esto solo corre en el navegador
+    const newParticles = [...Array(20)].map(() => ({
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      delay: `${Math.random() * 5}s`,
+      duration: `${15 + Math.random() * 10}s`,
+    }));
+    setParticles(newParticles);
+  }, []);
+
   return (
     <section className="relative space-y-12 overflow-hidden min-h-screen p-6 md:p-12">
       
-      {/* 1. FONDO GRADIENTE */}
+      {/* FONDO GRADIENTE */}
       <div className="fixed inset-0 -z-50 bg-gradient-to-br from-blue-50 via-white to-sky-50">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent animate-pulse" style={{ animationDuration: '8s' }} />
       </div>
 
-      {/* 2. RED DE PARTÍCULAS */}
+      {/* RED DE PARTÍCULAS */}
       <ParticleGridBackground />
 
-      {/* 3. BURBUJAS FLOTANTES */}
+      {/* 3. BURBUJAS FLOTANTES (CORREGIDO) */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {/* IMPORTANTE: Aquí usamos la variable 'particles', NO [...Array(20)] directo */}
+        {particles.map((p, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-blue-400/30 rounded-full animate-float"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${15 + Math.random() * 10}s`,
+              left: p.left,     // Usamos los valores guardados en el estado
+              top: p.top,
+              animationDelay: p.delay,
+              animationDuration: p.duration,
             }}
           />
         ))}
@@ -63,7 +89,6 @@ export default function Home() {
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
               Desarrollo de Software para
-              {/* CAMBIO: "block" fuerza el salto de línea para evitar el movimiento */}
               <span className="relative block mt-2 min-h-[1.2em]">
                 <span className="text-blue-600 relative z-10">
                   {typedText}
@@ -122,10 +147,7 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-4 text-xs text-gray-700">
               <TechCard icon="💻" title="Backend" items={[".NET · ASP.NET", "Web API · EF · Identity"]} />
               <TechCard icon="🌐" title="Frontend" items={["React · Next.js", "Blazor · HTML/CSS"]} />
-              
-              {/* CAMBIO: Android al lado y Blazor Hybrid agregado */}
               <TechCard icon="📱" title="Móvil" items={[".NET MAUI · Android", "Blazor Hybrid"]} />
-              
               <TechCard icon="🗄️" title="Datos" items={["SQL Server · MySQL", "Power BI · QlikView"]} />
             </div>
             <div className="mt-5 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/50 px-4 py-3 text-xs text-gray-600 border border-slate-100">
@@ -256,6 +278,7 @@ export default function Home() {
   );
 }
 
+// COMPONENTES AUXILIARES
 function TechCard({ icon, title, items }: { icon: string; title: string; items: string[] }) {
   return (
     <div className="group space-y-1 p-2 rounded-lg hover:bg-blue-50/50 transition-colors cursor-default">
