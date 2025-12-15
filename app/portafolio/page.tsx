@@ -112,7 +112,7 @@ export default function PortafolioPage() {
             color="violet"
             isSelected={selectedProject === 2}
             onSelect={() => setSelectedProject(selectedProject === 2 ? null : 2)}
-            demoUrl="https://tu-hosting.com/gestion-academica"
+            demoUrl="https://www.sistemauniversidad.somee.com/"
           />
         </div>
       </div>
