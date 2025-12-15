@@ -44,7 +44,7 @@ export default function PortafolioPage() {
               "JWT + Roles",
               "App móvil híbrida",
             ]}
-            tech=".NET • Web API • MAUI Blazor • SQL Server • JWT • EF Core"
+            tech=".NET 8.0 • Web API • MAUI Blazor • SQL Server • JWT • EF Core"
             color="blue"
             isSelected={selectedProject === 0}
             onSelect={() => setSelectedProject(selectedProject === 0 ? null : 0)}
