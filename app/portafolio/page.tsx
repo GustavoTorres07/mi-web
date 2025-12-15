@@ -29,6 +29,8 @@ export default function PortafolioPage() {
         <h2 className="text-2xl font-bold">Proyectos Principales</h2>
 
         <div className="grid gap-6 md:grid-cols-2">
+          
+          {/* --- PROYECTO 1: CLINIPLUS (Actualizado) --- */}
           <ProjectCard
             icon="🏥"
             title="CliniPlus"
@@ -46,9 +48,18 @@ export default function PortafolioPage() {
             color="blue"
             isSelected={selectedProject === 0}
             onSelect={() => setSelectedProject(selectedProject === 0 ? null : 0)}
-            demoUrl="https://tu-hosting.com/cliniplus"
+            
+            // --- CAMBIOS AQUI ---
+            demoUrl="./archivos/CliniPlus.apk" // Ruta a tu archivo en la carpeta public
+            isDownload={true}                  // Indicamos que es una descarga
+            buttonText="Descargar App para Demo" // Texto personalizado
+            demoCreds={{ 
+                user: 'admin@cliniplus.com', 
+                pass: 'Admin1234!' 
+            }}
           />
 
+          {/* --- PROYECTO 2: TECNOSTORE --- */}
           <ProjectCard
             icon="🛒"
             title="TecnoStore"
@@ -69,6 +80,7 @@ export default function PortafolioPage() {
             demoUrl="https://tu-hosting.com/tecnostore"
           />
 
+          {/* --- PROYECTO 3: SISTEMA UNIVERSIDAD --- */}
           <ProjectCard
             icon="🎓"
             title="Sistema de Gestión Académica"
@@ -127,7 +139,7 @@ export default function PortafolioPage() {
   );
 }
 
-/* ================= COMPONENTES ================= */
+/* ================= COMPONENTES ACTUALIZADOS ================= */
 
 function ProjectCard({
   icon,
@@ -141,6 +153,8 @@ function ProjectCard({
   onSelect,
   demoUrl,
   demoCreds,
+  buttonText, // Nuevo prop
+  isDownload, // Nuevo prop
 }: {
   icon: string;
   title: string;
@@ -153,6 +167,8 @@ function ProjectCard({
   onSelect: () => void;
   demoUrl?: string;
   demoCreds?: { user: string; pass: string };
+  buttonText?: string;
+  isDownload?: boolean;
 }) {
   const colors: any = {
     blue: 'from-blue-50 to-sky-50 border-blue-200',
@@ -193,21 +209,29 @@ function ProjectCard({
 
         {demoCreds && (
           <div className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs">
-            <strong>Acceso demo</strong>
+            <strong>🔑 Acceso Demo</strong>
             <br />
-            Usuario: <span className="font-mono">{demoCreds.user}</span> ·
+            Usuario: <span className="font-mono select-all">{demoCreds.user}</span> ·
             Contraseña:{' '}
-            <span className="font-mono">{demoCreds.pass}</span>
+            <span className="font-mono select-all">{demoCreds.pass}</span>
           </div>
         )}
 
         <a
           href={demoUrl}
-          target="_blank"
+          // Si es descarga, agregamos el atributo download y evitamos abrir pestaña nueva vacía
+          target={isDownload ? "_self" : "_blank"} 
+          download={isDownload ? "CliniPlus_Demo.apk" : undefined}
           onClick={(e) => e.stopPropagation()}
-          className="inline-flex items-center justify-center w-full rounded-lg bg-blue-600 px-4 py-2 text-xs font-semibold text-white hover:bg-blue-700"
+          className="inline-flex items-center justify-center w-full rounded-lg bg-blue-600 px-4 py-2 text-xs font-semibold text-white hover:bg-blue-700 transition-colors"
         >
-          Ver sistema en vivo →
+          {isDownload ? (
+            <span className="flex items-center gap-2">
+               📥 {buttonText || "Descargar"}
+            </span>
+          ) : (
+            buttonText || "Ver sistema en vivo →"
+          )}
         </a>
       </div>
     </div>
