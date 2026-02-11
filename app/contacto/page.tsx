@@ -170,14 +170,14 @@ export default function ContactoPage() {
                 icon="💬"
                 label="WhatsApp"
                 value="+54 9 2954 216751"
-                href="https://wa.me/5492954216751"
+                href="https://wa.me/5492954219273"
                 color="emerald"
               />
               <ContactMethod
                 icon="📧"
                 label="Email (Gmail)"
                 value="gtreal62@gmail.com"
-                href="mailto:gtreal62@gmail.com"
+                href="mailto:gtdevstudio.of@gmail.com"
                 color="blue"
               />
               <ContactMethod
