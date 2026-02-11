@@ -169,7 +169,7 @@ export default function ContactoPage() {
               <ContactMethod
                 icon="💬"
                 label="WhatsApp"
-                value="+54 9 2954 216751"
+                value="+54 9 2954 219273"
                 href="https://wa.me/5492954219273"
                 color="emerald"
               />
