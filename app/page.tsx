@@ -107,7 +107,7 @@ export default function Home() {
 
           <div className="flex flex-wrap items-center gap-4">
             <a
-              href="https://wa.me/5492954216751"
+              href="https://wa.me/5492954219273"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105"
@@ -209,7 +209,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-start gap-2">
             <a
-              href="https://wa.me/5492954216751"
+              href="https://wa.me/5492954219273"
               target="_blank"
               rel="noopener noreferrer"
               className="group/btn relative inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 overflow-hidden"
