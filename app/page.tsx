@@ -83,7 +83,7 @@ export default function Home() {
         <div className="space-y-6 animate-fadeIn">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/60 backdrop-blur-sm px-3 py-1 text-xs font-medium text-blue-700 shadow-sm">
             <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
-            Disponible para proyectos freelance en 2025
+            Disponible para proyectos freelance en 2026
           </div>
 
           <div className="space-y-4">
@@ -131,7 +131,7 @@ export default function Home() {
             </div>
             <div className="group cursor-default">
               <p className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">Stack especializado</p>
-              <p>.NET · SQL Server · MAUI · React</p>
+              <p> Sitios Webs - Sistemas - Apps </p>
             </div>
           </div>
         </div>
