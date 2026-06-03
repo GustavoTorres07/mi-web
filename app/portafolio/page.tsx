@@ -59,32 +59,11 @@ export default function PortafolioPage() {
             }}
           />
 
-          {/* --- PROYECTO 2: TECNOSTORE --- */}
-          <ProjectCard
-            icon="🛒"
-            title="TecnoStore"
-            subtitle="E-commerce & Inventario"
-            description="Plataforma e-commerce con stock, pedidos, usuarios y soporte para app móvil."
-            features={[
-              "Catálogo de productos",
-              "Carrito y checkout",
-              "Gestión de inventario",
-              "Pedidos y envíos",
-              "Roles de usuario",
-              "App móvil",
-            ]}
-            tech=".NET • Web API • MAUI Blazor Hybrid • SQL Server • EF"
-            color="emerald"
-            isSelected={selectedProject === 1}
-            onSelect={() => setSelectedProject(selectedProject === 1 ? null : 1)}
-            demoUrl="https://tu-hosting.com/tecnostore"
-          />
-
           {/* --- PROYECTO 3: SISTEMA UNIVERSIDAD --- */}
           <ProjectCard
             icon="🎓"
             title="Sistema de Gestión Académica"
-            subtitle="Proyecto Final Programación II"
+            subtitle="Proyecto Final Programación III - Aplicaciones Web"
             description="Sistema web académico desarrollado en .NET Framework 4.8 MVC."
             features={[
               "Usuarios y roles",
@@ -101,6 +80,32 @@ export default function PortafolioPage() {
             demoUrl="https://www.sistemauniversidad.somee.com/"
             demoCreds={{ user: 'Admin', pass: 'Admin123' }}
           />
+                    {/* --- PROYECTO 4: SISTEMA UNIVERSIDAD --- */}
+          <ProjectCard
+            icon="🎓"
+            title="EduSys"
+            subtitle="Gestion Universitaria Integral"
+            description="Sistema web académico desarrollado por mi cuenta personal, con funcionalidades avanzadas para la gestión universitaria."
+            features={[
+              "Gestión de usuarios y roles",
+              "Administración académica completa",
+              "Inscripcion de Alumnos a Carreras y Materias",
+              "Asignación de materias y horarios",
+              "Generación de reportes en PDF",
+              "Historial académico detallado",
+              "Panel administrativo intuitivo",
+              "Notificaciones por email",
+              "Envio de Mensajes Masivos",
+              "Y mucho mas... (Entra al portal para explorar todas las funcionalidades!)",
+            ]}
+            tech=".NET 8.0 • Web Api • SQL Server • MudBlazor"
+            color="emerald"
+            isSelected={selectedProject === 2}
+            onSelect={() => setSelectedProject(selectedProject === 2 ? null : 2)}
+            demoUrl="https://edusys.runasp.net/"
+            demoCreds={{ user: 'admin@edusys.com', pass: 'Admin123!' }}
+          />
+          
         </div>
       </div>
 
